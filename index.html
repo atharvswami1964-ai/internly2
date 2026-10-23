@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Internly - Internship Management</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- LOGIN / SIGNUP PAGE -->
+<section id="authPage" class="auth-page">
+  <div class="auth-left">
+    <a class="logo" href="#">↗ Internly<span>.</span></a>
+    <div class="welcome">
+      <span class="tag">YOUR CAREER STARTS HERE</span>
+      <h1>Learn Today.<br><span>Grow Tomorrow.</span></h1>
+      <p>Discover opportunities, gain experience, and build your future with Internly.</p>
+      <div class="benefits">
+        <p>✓ Find the right internships</p>
+        <p>✓ Track your applications</p>
+        <p>✓ Manage opportunities easily</p>
+      </div>
+    </div>
+    <p class="copyright">© 2026 Internly. Learn. Apply. Grow.</p>
+  </div>
+
+  <div class="auth-right">
+    <div class="auth-topbar">
+      <a class="logo" href="#">↗ Internly<span>.</span></a>
+      <div class="auth-top-links"><span>For students</span><span>For providers</span><span class="secure-pill">● Secure workspace</span></div>
+    </div>
+    <form id="authForm" class="auth-card">
+      <div class="auth-tabs">
+        <button type="button" id="loginTab" class="active">Login</button>
+        <button type="button" id="signupTab">Create Account</button>
+      </div>
+
+      <h2 id="authTitle">Welcome Back!</h2>
+      <p id="authSubtitle">Login to access your dashboard.</p>
+
+      <div id="nameField" class="hidden">
+        <label>Full name</label>
+        <input id="name" placeholder="Enter your name">
+      </div>
+
+      <div id="companyField" class="hidden">
+        <label>Company name</label>
+        <input id="company" placeholder="Enter company name">
+      </div>
+
+      <label>Email address</label>
+      <input id="email" type="email" placeholder="you@example.com" required>
+
+      <label>Password</label>
+      <input id="password" type="password" placeholder="At least 6 characters"
+             minlength="6" required>
+
+      <div id="roleField" class="hidden">
+        <label>Register as</label>
+        <select id="role">
+          <option value="student">Student</option>
+          <option value="provider">Internship Provider</option>
+        </select>
+      </div>
+
+      <p id="authError" class="error"></p>
+      <button class="btn primary full" id="authSubmit">Login →</button>
+      <p class="auth-note">Create an account to get started.<br><button type="button" class="link-btn" onclick="loadDemo()">Try with demo data</button></p>
+    </form>
+    <footer class="auth-footer">
+      <span>© 2026 Internly. Built for your next big opportunity.</span>
+      <div><a href="#">Privacy</a><a href="#">Support</a></div>
+    </footer>
+  </div>
+</section>
+
+<!-- APPLICATION WEBSITE -->
+<div id="appPage" class="hidden">
+
+  <aside class="sidebar">
+    <a class="logo" href="#">↗ Internly<span>.</span></a>
+
+    <div class="profile-mini">
+      <div class="avatar" id="avatar">U</div>
+      <div>
+        <strong id="sideName">User</strong>
+        <small id="sideRole">Student</small>
+      </div>
+    </div>
+
+    <p class="menu-label">WORKSPACE</p>
+    <nav id="sideMenu"></nav>
+
+    <button class="logout-btn" onclick="logout()">↪ Logout</button>
+  </aside>
+
+  <main class="main-content">
+    <header class="dashboard-header">
+      <div>
+        <p class="tag">INTERNLY WORKSPACE</p>
+        <h1 id="pageTitle">Dashboard</h1>
+        <p id="pageSubtitle">Manage your information and opportunities.</p>
+      </div>
+      <div class="header-user">
+        <div class="avatar small-avatar" id="headerAvatar">U</div>
+      </div>
+    </header>
+
+    <section id="dashboardContent"></section>
+    <footer class="app-footer">
+      <div><a class="logo footer-logo" href="#">↗ Internly<span>.</span></a><p>Small steps today. Big careers tomorrow.</p></div>
+      <div class="footer-right"><span>Made for students and opportunity makers</span><span>© 2026 Internly</span></div>
+    </footer>
+  </main>
+</div>
+
+<!-- PUBLISH INTERNSHIP MODAL -->
+<div id="jobModal" class="modal-overlay hidden">
+  <form id="jobForm" class="modal-card">
+    <button type="button" class="modal-close" onclick="closeJobModal()">×</button>
+    <h2 id="jobModalTitle">Publish Internship</h2>
+    <p>Add an opportunity for students.</p>
+
+    <label>Internship title</label>
+    <input id="jobTitle" placeholder="e.g. Web Developer Intern" required>
+
+    <label>Job description</label>
+    <textarea id="jobDescription" placeholder="Describe the role and required skills" required></textarea>
+
+    <label>Work type</label>
+    <select id="jobType">
+      <option>Remote</option>
+      <option>Hybrid</option>
+      <option>On-site</option>
+    </select>
+
+    <label>Duration</label>
+    <input id="jobDuration" placeholder="e.g. 3 months" required>
+
+    <label>Monthly stipend</label>
+    <input id="jobStipend" placeholder="e.g. ₹8,000 or Unpaid" required>
+
+    <label>Application deadline</label>
+    <input id="jobDeadline" type="date">
+
+    <button class="btn primary full" id="jobSubmit">Publish Internship</button>
+  </form>
+</div>
+
+<!-- APPLY MODAL -->
+<div id="applyModal" class="modal-overlay hidden">
+  <form id="applyForm" class="modal-card">
+    <button type="button" class="modal-close" onclick="closeApplyModal()">×</button>
+    <h2 id="applyTitle">Apply</h2>
+    <p>Tell the provider why you are a good fit.</p>
+    <label>Cover note</label>
+    <textarea id="applyNote" placeholder="Introduce yourself and your relevant skills (min 20 characters)" minlength="20" required></textarea>
+    <label>Portfolio / resume link (optional)</label>
+    <input id="applyLink" type="url" placeholder="https://...">
+    <button class="btn primary full">Submit Application</button>
+  </form>
+</div>
+
+<div id="toast" class="toast"></div>
+<script src="script.js"></script>
+</body>
+</html>
